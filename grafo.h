@@ -15,8 +15,8 @@ public:
   bool EstaVacio();
   int ObtenerTamano();
   Vertice* ObtenerVertice(string nombre);
-  void InsertaVertice(string nombre);
-  void InsertaArista(string ori, string dest, int peso);
+  void InsertaVertice(string id, string nombre, string tipo, string direccion);
+  void InsertaArista(string ori, string dest, int distancia, string tipoRuta, bool activo);
   void MostrarListaAdyacencia();
   void EliminarVertice(string nombre);
   void EliminarArista(string ori, string dest);
@@ -49,9 +49,9 @@ Vertice* Grafo::ObtenerVertice(string nombre) {
   return NULL;
 }
 
-void Grafo::InsertaVertice(string nombre) {
+void Grafo::InsertaVertice(string id, string nombre, string tipo, string direccion) {
   if (ObtenerVertice(nombre) == NULL) {
-    Vertice* nuevo = new Vertice(nombre);
+    Vertice* nuevo = new Vertice(id, nombre, tipo, direccion);
     if (EstaVacio())
       primero = nuevo;
     else {
@@ -66,7 +66,7 @@ void Grafo::InsertaVertice(string nombre) {
   }
 }
 
-void Grafo::InsertaArista(string ori, string dest, int peso) {
+void Grafo::InsertaArista(string ori, string dest, int distancia, string tipoRuta, bool activo) {
   Vertice* vori = ObtenerVertice(ori);
   Vertice* vdest = ObtenerVertice(dest);
   if (vori == NULL)
@@ -74,7 +74,7 @@ void Grafo::InsertaArista(string ori, string dest, int peso) {
   if (vdest == NULL)
     cout << "El vertice destino no existe" << endl;
   if (vori != NULL && vdest != NULL) {
-    Arista* nueva = new Arista(vdest, peso);
+    Arista* nueva = new Arista(vdest, distancia, tipoRuta, activo);
     if (vori->ari == NULL)
       vori->ari = nueva;
     else {
@@ -254,7 +254,3 @@ bool Grafo::ExisteRuta(string origen, string destino) {
 
   return false;
 }
-
-}
-
-
