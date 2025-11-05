@@ -86,6 +86,15 @@ void Grafo::InsertaArista(string ori, string dest, int distancia, string tipoRut
     return;
   }
 
+  Arista *j = vori->ari;
+  while (j != NULL) {
+    if (j->dest == vdest) {
+      cout << "Ya existe una ruta entre '" << vori->nombre << "' y '" << vdest->nombre << "'." << endl;
+      return;
+    }
+    j = j->sig;
+  }
+
   Arista *nueva = new Arista(vdest, distancia, tipoRuta, activo);
 
   if (vori->ari == NULL) {
@@ -204,6 +213,11 @@ void Grafo::EliminarAristasDestino(string dest) {
 
 // Eliminar centro médico = Complejidad O(n * m)
 void Grafo::EliminarVertice(string id) {
+  if (EstaVacio()) {
+    cout << "El grafo está vacío." << endl;
+    return;
+  }
+
   if (primero->id == id){
     Vertice* i = primero;
     primero = primero->sig;
@@ -285,8 +299,8 @@ void Grafo::EliminarTodo() {
     i = primero;
     primero = primero->sig;
     EliminarAristas(i);
-    EliminarAristasDestino(i->nombre);
-    cout << "Vertice " << i->nombre << " eliminado" << endl;
+    EliminarAristasDestino(i->id);
+    cout << "Vertice " << i->id << " eliminado" << endl;
     delete(i);
     tamano--;
   }
@@ -320,7 +334,7 @@ bool Grafo::ExisteRuta(string origen, string destino) {
     Arista* arista = actual->ari;
     while (arista != NULL) {
       if (arista->dest == vdest) {
-        cout << "\nExiste una ruta desde '" << vori->nombre << "' hasta '" << vdest->nombre << endl;
+        cout << "\nExiste una ruta desde '" << vori->nombre << "' hasta '" << vdest->nombre << "'." << endl;
         return true;
       }
 
