@@ -11,13 +11,16 @@ Este sistema permite a una clínica en Perú visualizar y gestionar las rutas m�
 ### 1. **Modificaciones en la Clase Arista**
 
 **Código Original:**
+```cpp
 class Arista {
 int weight;
 Arista *next;
 Vertice *dest;
 };
+```
 
 **Código Adaptado:**
+```cpp
 class Arista {
 int distancia; // Tiempo en minutos entre centros
 string tipoRuta; // vehicular, peatonal, ambulancia
@@ -25,20 +28,24 @@ bool activa; // Estado de la ruta (activa/inactiva)
 Arista *sig;
 Vertice *dest;
 };
+```
 
 **Justificación:** Se agregaron atributos específicos para el contexto médico: `tipoRuta` permite clasificar las rutas según el medio de transporte, y `activa` permite gestionar el estado operativo de cada ruta.
 
 ### 2. **Modificaciones en la Clase Vertice**
 
 **Código Original:**
+```cpp
 class Vertice {
 std::string name;
 float capital;
 Vertice *next;
 Arista *ari;
 };
+```
 
 **Código Adaptado:**
+```cpp
 class Vertice {
 string id; // ID único del centro
 string nombre; // Nombre del centro médico
@@ -49,6 +56,7 @@ string horario; // Horario de atención
 Vertice *sig;
 Arista *ari;
 };
+```
 
 **Justificación:** Se eliminó el atributo genérico `capital` y se agregaron campos específicos del dominio médico: `id` (identificador único), `tipo` (clasificación del centro), `direccion`, `especialidades` y `horario` de atención.
 
