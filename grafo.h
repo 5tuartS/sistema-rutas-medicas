@@ -15,7 +15,8 @@ public:
   bool EstaVacio();
   int ObtenerTamano();
   Vertice* ObtenerVertice(string id);
-  void InsertaVertice(string id, string nombre, string tipo, string direccion);
+  void InsertaVertice(string id, string nombre, string tipo, string direccion,
+                      vector<string> especialidades = {}, string horario = "");
   void InsertaArista(string ori, string dest, int distancia, string tipoRuta, bool activo);
   void MostrarListaAdyacencia();
   void MostrarCentrosConectados(string id);
@@ -51,9 +52,10 @@ Vertice* Grafo::ObtenerVertice(string id) {
 }
 
 // Insertar nuevo centro médico = Complejidad O(n)
-void Grafo::InsertaVertice(string id, string nombre, string tipo, string direccion) {
+void Grafo::InsertaVertice(string id, string nombre, string tipo, string direccion, 
+                           vector<string> especialidades, string horario) {
   if (ObtenerVertice(id) == NULL) {
-    Vertice* nuevo = new Vertice(id, nombre, tipo, direccion);
+    Vertice* nuevo = new Vertice(id, nombre, tipo, direccion, especialidades, horario);
 
     if (EstaVacio()) {
       primero = nuevo;
