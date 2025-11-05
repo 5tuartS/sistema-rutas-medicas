@@ -5,7 +5,7 @@ using namespace std;
 class Vertice;
 
 class Arista {
-  int peso;
+  int distancia;
   string tipoRuta;
   bool activa;
 
@@ -15,12 +15,12 @@ class Arista {
   friend class Grafo;
 
 public:
-  Arista(Vertice* _dest, int _peso, string _tipoRuta, bool _activa);
+  Arista(Vertice *_dest, int _distancia, string _tipoRuta, bool _activa);
 };
 
-Arista::Arista(Vertice* _dest, int _peso, string _tipoRuta, bool _activa) {
+Arista::Arista(Vertice* _dest, int _distancia, string _tipoRuta, bool _activa) {
   dest = _dest;
-  peso = _peso;
+  distancia = _distancia;
   tipoRuta = _tipoRuta;
   activa = _activa;
   sig = NULL;
