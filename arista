@@ -1,0 +1,35 @@
+#pragma once
+#include <iostream>
+using namespace std;
+
+class Vertice;
+
+class Arista {
+private:
+    int distancia;       
+    string tipoRuta;     
+    bool activa;         
+
+    Arista *sig;         
+    Vertice *dest;       
+
+public:
+    Arista(Vertice *destino, int dist, string tipo, bool estado) {
+        dest = destino;
+        distancia = dist;
+        tipoRuta = tipo;
+        activa = estado;
+        sig = nullptr;
+    }
+
+
+    Vertice* getDestino() const { return dest; }
+    int getDistancia() const { return distancia; }
+    string getTipoRuta() const { return tipoRuta; }
+    bool estaActiva() const { return activa; }
+    Arista* getSiguiente() const { return sig; }
+
+    void setSiguiente(Arista *a) { sig = a; }
+
+    void setActivo(bool estado) { activa = estado; }
+};
